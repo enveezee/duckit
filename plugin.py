@@ -17,7 +17,7 @@
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+# ARE DISCLAIMED.  IN NO EVENT SHAdLL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
 # LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 # CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 # SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
@@ -133,7 +133,7 @@ class DuckIt(callbacks.Plugin):
         return link
 
 
-    def search(self, query):
+    def searchDDG(self, query):
         # Quote the query string.
         query = quote(''.join(query))
 
@@ -150,32 +150,67 @@ class DuckIt(callbacks.Plugin):
         searchResults = searchResults.find_all('div', match['result'])
 
 
-        results = []
+        self.results = []
         # Parse descritpion, link from the searchResults list.
         for result in searchResults:
             anch = result.find('a', match['link'])
             desc = anch.text
             link = self.parseLink(anch['href'])
             url = urlparse(link)
-            if 'duckduckgo.com' in url.netloc:
+            domain = url.netloc
+            if 'duckduckgo.com' in domain:
                 continue
-            results.append({'desc': desc, 'link':link})
+            self.results.append({
+                'desc': f'{desc}', 
+                'domain': domain,
+                'link':link, 
+                'url':url
+            })
 
-        return results
+        return self.results
 
 
-    def di(self, irc, msg, args, query):
-        '''di <query>
+    def search(self, irc, msg, args, query):
+        '''search <query>
         
         Search the web with DuckDuckGo, if you can't DuckIt...
         '''
-        searchResults = self.search(query)
-        results = []
+        searchResults = self.searchDDG(query)
+        l = r = 0
+        results = [] 
         for result in searchResults:
-            results.append(f"{result['link']} {result['desc']}")
-        irc.reply(results, prefixNick=False)
 
-    di = wrap(di, ['text'])
+            desc = result['desc']
+            descLen = len(desc)
+            domain = result['domain']
+            domainLen = len(domain)
+            domainLvl = result['domain'].split('.')
+            link = result['link']
+            linkLen = len(link)
+            for e in domainLvl:
+                if len(e) == max([len(l) for l in domainLvl]):
+                    domain = e
+                    domainLen = len(e)
+            url = result['url']
+            r = r + 1
+            result = ' '.join([
+                f'{r}|{domain}',
+                desc[0:122-domainLen]
+            ])
+            results.append(f'{result}')
+        irc.reply('|'.join(results), prefixNick=False)
 
+    search = wrap(search, ['text'])
+
+
+    def result(self, irc, msg, args, result):
+        '''result <result number>
+
+        Return the full result for a given index number
+        '''
+        result = self.results[result-1]
+        irc.reply(f"{result['link']} {result['desc']}", prefixNick=False)
+
+    result = wrap(result, ['int'])
 
 Class = DuckIt
