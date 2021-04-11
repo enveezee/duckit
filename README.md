@@ -15,12 +15,14 @@ examples using the built in alias plugin with aliases:
                U.S|2|urbandictionary covfefe According to Diane Marshall, Covfefe' (pronounced " cuv - fee- fae") is an Antediluvian term for 
                "I|3|doyoucovfefe Alt-media reported the COVFEFE story. Amazon balked. COV… View Article Mar 1st 2019 COVFEFE vs Amazon Part 2. 
                |4|wikipedia The Communications Over Various Feeds  (8 more messages)
+               
 10:47 ( nvz) ,m
 
 10:47 ( BoydW) nvz: Electronically for Engagement Act (COVFEFE Act), House Bill H.R. 2884, was |5|doyoucovfefe COVFEFE isn't just the world's 
                greatest coffee. It's also a lifestyle. Coffee For Deplorables By Deplorables.|6|snopes Covfefe' (pronounced "cuv - fee- fae") is 
                an Antediluvian term for "In the end we win." It was commonly used by the |7|thegatewaypundit Leaked documents, titled 'covfefe 
                Translate Easter egg,' reveal how Google raced to scrub  (7 more messag
+               
 10:40 ( nvz) ,d 3
 
 10:40 ( BoydW) https://www.doyoucovfefe.com/ Alt-media reported the COVFEFE story. Amazon balked. COV… View Article Mar 1st 2019 COVFEFE vs Amazon 
