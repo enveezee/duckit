@@ -5,6 +5,8 @@ examples using the built in alias plugin with aliases:
 
   ,alias add di duckit search $*
   
+  ,alias add dl duckit lucky $*
+  
   ,alias add d duckit result $1
   
   ,alias add m more
@@ -27,4 +29,10 @@ examples using the built in alias plugin with aliases:
 
 10:40 ( BoydW) https://www.doyoucovfefe.com/ Alt-media reported the COVFEFE story. Amazon balked. COV… View Article Mar 1st 2019 COVFEFE vs Amazon 
                Part 2. Amazon is a big fat mess, sad!Tech Giants are gearing up for the 2020 Presidential Election. Without… View Article Feb 16th 
-               2019 COVFEFE vs. Amazon Part 1 ...               
+               2019 COVFEFE vs. Amazon Part 1 ...
+               
+10:43 ( nvz) ,dl hr
+
+10:43 ( BoydW) https://www.investopedia.com/terms/h/humanresources.asp&rut=ae83a88f912c91d976eba0b06325a97b731750e658b9a271de8f4326ede1ea4d Human 
+               resources (HR) is the division of a business that is charged with finding, screening, recruiting, and training job applicants, as 
+               well as administering employee-benefit programs. HR plays a...
