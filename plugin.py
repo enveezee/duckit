@@ -187,10 +187,20 @@ class DuckIt(callbacks.Plugin):
             domainLvl = result['domain'].split('.')
             link = result['link']
             linkLen = len(link)
+            maxDomainLen = max([len(l) for l in domainLvl])
             for e in domainLvl:
-                if len(e) == max([len(l) for l in domainLvl]):
-                    domain = e
-                    domainLen = len(e)
+                if len(e) == maxDomainLen:
+                    if maxDomainLen > 3:
+                        domain = e
+                        domainLen = len(e)
+                    else:
+                        domainLvls = len(domainLvl)
+                        if domainLvls == 3:
+                            domain = domainLvl[1]
+                        if domainLvls == 2:
+                            domain == domainLvl[0]
+                        break
+                        
             url = result['url']
             r = r + 1
             result = ' '.join([
@@ -212,5 +222,16 @@ class DuckIt(callbacks.Plugin):
         irc.reply(f"{result['link']} {result['desc']}", prefixNick=False)
 
     result = wrap(result, ['int'])
+
+    def lucky(self, irc, msg, args, search):
+        '''lucky
+
+        Return the full result for first result.
+        '''
+        self.searchDDG(search)
+        result = self.results[1]
+        irc.reply(f"{result['link']} {result['desc']}", prefixNick=False)
+
+    lucky = wrap(lucky, ['text'])
 
 Class = DuckIt
