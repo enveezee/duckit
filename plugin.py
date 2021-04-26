@@ -163,7 +163,7 @@ class DuckIt(callbacks.Plugin):
             self.results.append({
                 'desc': f'{desc}', 
                 'domain': domain,
-                'link':link, 
+                'link':link.split('&rut=')[0], 
                 'url':url
             })
 
