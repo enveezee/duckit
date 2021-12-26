@@ -229,7 +229,7 @@ class DuckIt(callbacks.Plugin):
         Return the full result for first result.
         '''
         self.searchDDG(search)
-        result = self.results[1]
+        result = self.results[0]
         irc.reply(f"{result['link']} {result['desc']}", prefixNick=False)
 
     lucky = wrap(lucky, ['text'])
